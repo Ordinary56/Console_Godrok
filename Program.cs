@@ -8,7 +8,7 @@ namespace Console_Godrok
     {
         public static void Main(string[] args)
         {
-            List<int> dephts = new();
+            List<int> dephts = [];
             using (StreamReader sr = new("./melyseg.txt"))
             {
                 while (!sr.EndOfStream)
@@ -28,8 +28,8 @@ namespace Console_Godrok
             Console.WriteLine($"3. feladat\nAz érintetlen terület aránya {100.0 * flat / dephts.Count:0.00}%.\n");
 
             //4. feladat
-            List<string> egysor = new List<string>();
-            List<List<string>> sorok = new List<List<string>>();
+            List<int> line = [];
+            List<List<int>> lines = [];
 
             using (StreamWriter sw = new StreamWriter("godrok.txt"))
             {
@@ -40,22 +40,22 @@ namespace Console_Godrok
                 {
                     if (depth > 0)
                     {
-                        egysor.Add(depth.ToString());
+                        line.Add(depth);
                     }
 
                     if (depth == 0 && prev > 0)
                     {
-                        sorok.Add(new List<string>(egysor));
-                        egysor.Clear();
+                        lines.Add(new List<int>(line));
+                        line.Clear();
                     }
 
                     prev = depth;
                 }
 
-                sorok.ForEach(x => sw.WriteLine(string.Join(" ", x)));
+                lines.ForEach(x => sw.WriteLine(string.Join(" ", x)));
             }
 
-            Console.WriteLine($"5. feladat\nA gödrök száma: {sorok.Count}\n");
+            Console.WriteLine($"5. feladat\nA gödrök száma: {lines.Count}\n");
 
             Console.WriteLine("6. feladat");
             if (dephts[index - 1] > 0)
