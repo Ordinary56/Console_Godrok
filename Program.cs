@@ -19,13 +19,13 @@ namespace Console_Godrok
 
             Console.WriteLine($" 1. feladat\n A fájl adatainak száma: {dephts.Count}\n");
 
-            
+
             Console.Write("Adjon meg egy távolságértéket! ");
             int index = int.Parse(Console.ReadLine()!);
             Console.WriteLine($"\n2. feladat\nEzen a helyen a felszín {dephts[index - 1]} méter mélyen van.\n");
 
             int flat = dephts.Count(x => x == 0);
-            Console.WriteLine($"3. feladat\nAz érintetlen terület aránya {100.0 * flat / dephts.Count:0.00}%.\n");
+            Console.WriteLine($"3. feladat\nAz érintetlen terület aránya {100f * flat / dephts.Count:F2}%.\n");
 
             //4. feladat
             List<int> line = [];
@@ -104,6 +104,7 @@ namespace Console_Godrok
             {
                 Console.WriteLine("Az adott helyen nincs gödör.");
             }
+            Console.ReadKey();
         }
     }
 }
